@@ -20,4 +20,4 @@ I have to apologize that since I am currently busy with my academics, I cannot h
 
 # REMINDER
 1. run initSOOPLAT.m to load the dependencies into MATLAB.
-2. This manuscript has a PDF version preprinted on ArXiv.org.
+2. This manuscript has a PDF version preprinted on arXiv.org.

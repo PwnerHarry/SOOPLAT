@@ -18,3 +18,7 @@ Computation, Accepted and Online, 2018.
 [4] R. Cheng and Y. Jin, “A competitive swarm optimizer for large scale optimization,” IEEE Transactions on Cybernetics, vol. 45, no. 2, pp. 191–204, 2015.
 
 [5] M. N. Omidvar, et. al., “DG2: A faster and more accurate differential grouping for large-scale black-box optimization,” IEEE Transactions on Evolutionary Computation, vol. 21, no. 6, pp. 929–942, 2017.
+
+# REMINDER
+
+run initSOOPLAT.m to add dependencies, enjoy!

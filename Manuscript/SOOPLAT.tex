@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{geometry}
+\geometry{left=3cm,right=3cm,top=3cm,bottom=3cm}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{array,enumerate,float,bm,subfig}
+\usepackage{pxfonts}
+\newcommand\etal{\textit{et. al.}}
+\newcommand\ie{\textit{i. e.}}
+\newcommand\eg{\textit{e. g.}}
+\newcommand\etc{\textit{etc.}}
+%%%%
+\newtheorem{problem}{Problem}
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+
+\begin{document}
+\title{SOOPLAT: A Convenient Experimental Platform for Single Objective Optimization}
+
+\author{Mingde Zhao\\
+mingde.zhao@outlook.com\\
+School of Computer Science\\
+McGill University}
+
+% \bstctlcite{IEEEexample:BSTcontrol}
+
+\date{\today}
+\maketitle
+
+Increasing interest in the research of single objective optimization algorithms calls for an experimental platform that could provide researchers with convenient and universal interfaces of the benchmark functions and easy gathering statistics. Here, I propose a prototype Single Objective Optimization PLATform (SOOPLAT\footnote{\url{https://github.com/PwnerHarry/SOOPLAT/}}) to meet the needs.
+\par
+SOOPLAT is inspired by the masterpiece PlatEMO \cite{tian2017platemo} by Dr. Ye Tian and his coworkers. I want to express sincere gratitude for the convenience that PlatEMO provided with me when I was composing the papers \cite{gezhao2018interacting, zhaoge2018fast}. Therefore, I have decided to make use of my time composing a convenient open-source platform for us the researchers and experimenters for single objective optimization. The development of SOOPLAT began shortly after a chat with Dr. Daniel Molina, chair of the IEEE Task Force on Large-Scale Global Optimization (\url{www.tflsgo.org}), as both of us agreed that a platform is in great need.
+\par
+I have to apologize that since I am currently busy with my academics, I cannot hereby provide a detailed users' manual for this platform, which surely I will provide when I am done with my recent business. Since my code is clear to comprehend, please read the existing code of the algorithms I have implemented such as CSO \cite{cheng2015competitive}, DECC-DG2 \cite{omidvar2017faster}, \etc{}, and you will certainly know how easy-to-use SOOPLAT is. Also, please contribute to the sources. You are the most welcome!
+
+\bibliographystyle{IEEEtran}
+\bibliography{reference}
+\end{document}

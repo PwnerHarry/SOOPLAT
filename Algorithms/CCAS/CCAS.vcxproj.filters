@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="File di origine">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="File di intestazione">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="File di risorse">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="File di origine\CEC2010">
+      <UniqueIdentifier>{a394afcf-88f0-4e48-9361-9d5a77920d3e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="JADE.h">
+      <Filter>File di origine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F20.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F19.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F18.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F17.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F16.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F15.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F14.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F13.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F12.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F11.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F10.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F9.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F8.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F7.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F6.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F5.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F4.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F3.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F2.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\F1.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="cec2010\Benchmarks.cpp">
+      <Filter>File di origine\CEC2010</Filter>
+    </ClCompile>
+    <ClCompile Include="JADE.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="Decomposer.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="CCDE.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

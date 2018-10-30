@@ -4,7 +4,7 @@ Increasing interest in the research of single objective optimization algorithms 
 
 SOOPLAT is inspired by the masterpiece PlatEMO [1] by Dr. Ye Tian and his coworkers. I want to express sincere gratitude for the convenience that PlatEMO provided with me when I was composing the papers [2, 3]. Therefore, I have decided to make use of my time composing a convenient open-source platform for us the researchers and experimenters for single objective optimization. The development of SOOPLAT began shortly after a chat with Dr. Daniel Molina, chair of the IEEE Task Force on Large-Scale Global Optimization (www.tflsgo.org), as both of us agreed that a platform is in great need.
 
-I have to apologize that since I am currently busy with my academics, I cannot hereby provide a detailed users’ manual for this platform, which surely I will provide when I am done with my recent business. Since my code is clear to comprehend, please read the existing code of the algorithms I have implemented such as CSO [4], DECC-DG2 [5], etc., and you will certainly know how easy-to-use SOOPLAT is. Also, please contribute to the sources. You are the most welcome!
+I have to apologize that since I am currently busy with my academics, I cannot hereby provide a detailed users’ manual for this platform, which surely I will provide when I am done with my recent business. Since my code is clear to comprehend, please read the existing code of the algorithms I have implemented such as CSO [4], DECC-DG2 [5], etc., and you will certainly know how easy-to-use SOOPLAT is. Also, please contribute to the source code. You are the most welcome!
 
 ## References
 
@@ -20,5 +20,5 @@ Computation, Accepted and Online, 2018.
 [5] M. N. Omidvar, et. al., “DG2: A faster and more accurate differential grouping for large-scale black-box optimization,” IEEE Transactions on Evolutionary Computation, vol. 21, no. 6, pp. 929–942, 2017.
 
 # REMINDER
-
-run initSOOPLAT.m to add dependencies, enjoy!
+1. run initSOOPLAT.m to load the dependencies into MATLAB.
+2. This manuscript has a PDF version preprinted on ArXiv.org.

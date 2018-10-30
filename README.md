@@ -10,8 +10,7 @@ I have to apologize that since I am currently busy with my academics, I cannot h
 
 [1] Y. Tian, et. al., “PlatEMO: A MATLAB platform for evolutionary multi-objective optimization [educational forum],” IEEE Computational Intelligence Magazine, vol. 12, no. 4, pp. 73–87, 2017.
 
-[2] H.GeandM.Zhao,et.al.,“Amany-objectiveevolutionaryalgorithmwithtwointeractingprocesses: Cascadeclusteringandreferencepointincrementallearning,”IEEETransactionsonEvolutionary
-Computation, Accepted and Online, 2018.
+[2] H.Ge and M.Zhao, et. al., “A many-objective evolutionary algorithm with two interacting processes: Cascade clustering and reference point incremental learning,” IEEE Transactions on Evolutionary Computation, Accepted and Online, 2018.
 
 [3] M. Zhao and H. Ge, et. al., “A many-objective evolutionary algorithm with fast clustering and reference point redistribution,” in IEEE Congress on Evolutionary Computation, 2018, pp. 1–6.
 

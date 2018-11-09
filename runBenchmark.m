@@ -1,5 +1,5 @@
 clear all;
-algorithms = {'BICCA2'};
+algorithms = {'CCCMAES'};
 suite = 'LSO13';
 function_index = 1;
 runtimes = 1;

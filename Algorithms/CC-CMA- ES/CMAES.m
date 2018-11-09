@@ -56,7 +56,7 @@ damps = 1 + 2 * max(0, sqrt((mueff-1)/(dimension+1))-1) + cs; % damping for sigm
 pc = zeros(dimension,1); ps = zeros(dimension,1);   % evolution paths for C and sigma
 if isempty(C)
     B = eye(dimension,dimension);                       % B defines the coordinate system
-D = ones(dimension,1);                      % diagonal D defines the scaling
+    D = ones(dimension,1);                      % diagonal D defines the scaling
     C = B * diag(D.^2) * B';            % covariance matrix C
 else
     [B, D] = eig(C);
@@ -72,24 +72,16 @@ ub = Global.problem.upperbound(dims);
 lb = Global.problem.lowerbound(dims);
 while Global.evaluated - startFEs < maxFEs %#ok<*BDSCI>
     G = G + 1;
-    % Generate and evaluate lambda offspring（�?机产生�?�代）
+    % Generate and evaluate lambda offspring
     arx = repmat(xmean, 1, lambda);
     for k = 1: lambda
         arx(:, k) = arx(:, k) + sigma * B * (D .* randn(dimension, 1)); % m + sig * Normal(0,C)
     end
-    if ~isreal(arx)
-        error('wtf');
-    end
-    MIN = repmat(lb', 1, lambda);
-    MAX = repmat(ub', 1, lambda);
-    overflow_ub_index = arx > MAX;
-    overflow_lb_index = arx < MIN;
-    arx(overflow_ub_index) = MAX(overflow_ub_index);
-    arx(overflow_lb_index) = MIN(overflow_lb_index);
+    arx = trim2Bounds(arx, lb, ub, lambda);
     
     arfitness = Global.evaluate(combine(arx', contextVector, dims));
     
-    % Sort by fitness and compute weighted mean into xmean（排�?，选择值较�?的采样点）
+    % Sort by fitness and compute weighted mean into xmean
     [~, arindex] = sort(arfitness);  % minimization
     xold = xmean;
     xmean = arx(:,arindex(1:mu)) * weights;  % recombination, new mean value（新的�?�值）
@@ -97,11 +89,11 @@ while Global.evaluated - startFEs < maxFEs %#ok<*BDSCI>
     overflow_lb_index = xmean < lb';
     xmean(overflow_ub_index) = ub(overflow_ub_index);
     xmean(overflow_lb_index) = lb(overflow_lb_index);
-    % Cumulation: Update evolution paths（更新进化路径，在�??方差矩阵更新的时候利用，�??方差更新的方法：rank one 和rank U �?�?�的方�?）
+    % Cumulation: Update evolution paths
     ps = (1-cs) * ps + sqrt(cs*(2-cs)*mueff) * invsqrtC * (xmean-xold) / sigma;
     hsig = sum(ps.^2)/(1-(1-cs)^(2*(Global.evaluated - startFEs)/lambda))/dimension < 2 + 4/(dimension+1);
     pc = (1-cc) * pc + hsig * sqrt(cc*(2-cc)*mueff) * (xmean-xold) / sigma;
-    % Adapt covariance matrix C（更新�??方差矩阵）
+    % Adapt covariance matrix C
     artmp = (1/sigma) * (arx(:,arindex(1:mu)) - repmat(xold,1,mu));  % mu difference vectors
     C = (1-c1-cmu) * C + c1 * (pc * pc' + (1-hsig) * cc*(2-cc) * C) + cmu * artmp * diag(weights) * artmp';
     % Adapt step size sigma更新步长
@@ -109,13 +101,23 @@ while Global.evaluated - startFEs < maxFEs %#ok<*BDSCI>
     % Update B and D from C
     if (Global.evaluated - startFEs) - eigeneval > lambda/(c1+cmu)/dimension/10  % to achieve O(dimension^2)
         eigeneval = (Global.evaluated - startFEs);
-        C = triu(C) + triu(C,1)'; % enforce symmetry
-        [B,D] = eig(C);           % eigen decomposition, B==normalized eigenvectors
+        C = triu(C) + triu(C, 1)'; % enforce symmetry
+        [B, D] = eig(C);           % eigen decomposition, B==normalized eigenvectors
         D = sqrt(abs(diag(D)));        % D contains standard deviations now
         invsqrtC = B * diag(D.^-1) * B';
     end
 end
 end
+
+function X = trim2Bounds(X, lb, ub, NP)
+MIN = repmat(lb', 1, NP);
+MAX = repmat(ub', 1, NP);
+overflow_ub_index = X > MAX;
+overflow_lb_index = X < MIN;
+X(overflow_ub_index) = MAX(overflow_ub_index);
+X(overflow_lb_index) = MIN(overflow_lb_index);
+end
+
 function X = scale2space(x, dims, Global)
 lambda = size(x, 2);
 X = repmat(Global.problem.lowerbound(dims), lambda, 1) + x' .* repmat(Global.problem.upperbound(dims) - Global.problem.lowerbound(dims), lambda, 1);

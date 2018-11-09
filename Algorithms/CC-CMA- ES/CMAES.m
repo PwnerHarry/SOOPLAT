@@ -1,5 +1,4 @@
 function [xmean, C, sigma] = CMAES(varargin)
-% TODO: no boundary
 xmean = [];
 C = [];
 contextVector = [];
@@ -68,8 +67,8 @@ chiN = dimension^0.5*(1-1/(4*dimension)+1/(21*dimension^2));  % expectation of |
 G = 0;
 % -------------------- Generation Loop --------------------------------
 startFEs = Global.evaluated;
-ub = Global.problem.upperbound(dims);
-lb = Global.problem.lowerbound(dims);
+ub = Global.problem.upperbound(dims)';
+lb = Global.problem.lowerbound(dims)';
 while Global.evaluated - startFEs < maxFEs %#ok<*BDSCI>
     G = G + 1;
     % Generate and evaluate lambda offspring
@@ -77,18 +76,15 @@ while Global.evaluated - startFEs < maxFEs %#ok<*BDSCI>
     for k = 1: lambda
         arx(:, k) = arx(:, k) + sigma * B * (D .* randn(dimension, 1)); % m + sig * Normal(0,C)
     end
-    arx = trim2Bounds(arx, lb, ub, lambda);
-    
+    arx = trimPopulation(arx, lb, ub);
     arfitness = Global.evaluate(combine(arx', contextVector, dims));
     
     % Sort by fitness and compute weighted mean into xmean
     [~, arindex] = sort(arfitness);  % minimization
     xold = xmean;
     xmean = arx(:,arindex(1:mu)) * weights;  % recombination, new mean value（新的�?�值）
-    overflow_ub_index = xmean > ub';
-    overflow_lb_index = xmean < lb';
-    xmean(overflow_ub_index) = ub(overflow_ub_index);
-    xmean(overflow_lb_index) = lb(overflow_lb_index);
+    xmean = trimPopulation(xmean, lb, ub);
+    
     % Cumulation: Update evolution paths
     ps = (1-cs) * ps + sqrt(cs*(2-cs)*mueff) * invsqrtC * (xmean-xold) / sigma;
     hsig = sum(ps.^2)/(1-(1-cs)^(2*(Global.evaluated - startFEs)/lambda))/dimension < 2 + 4/(dimension+1);
@@ -96,7 +92,7 @@ while Global.evaluated - startFEs < maxFEs %#ok<*BDSCI>
     % Adapt covariance matrix C
     artmp = (1/sigma) * (arx(:,arindex(1:mu)) - repmat(xold,1,mu));  % mu difference vectors
     C = (1-c1-cmu) * C + c1 * (pc * pc' + (1-hsig) * cc*(2-cc) * C) + cmu * artmp * diag(weights) * artmp';
-    % Adapt step size sigma更新步长
+    % Adapt step size sigma
     sigma = sigma * exp((cs/damps)*(norm(ps)/chiN - 1));
     % Update B and D from C
     if (Global.evaluated - startFEs) - eigeneval > lambda/(c1+cmu)/dimension/10  % to achieve O(dimension^2)
@@ -107,18 +103,4 @@ while Global.evaluated - startFEs < maxFEs %#ok<*BDSCI>
         invsqrtC = B * diag(D.^-1) * B';
     end
 end
-end
-
-function X = trim2Bounds(X, lb, ub, NP)
-MIN = repmat(lb', 1, NP);
-MAX = repmat(ub', 1, NP);
-overflow_ub_index = X > MAX;
-overflow_lb_index = X < MIN;
-X(overflow_ub_index) = MAX(overflow_ub_index);
-X(overflow_lb_index) = MIN(overflow_lb_index);
-end
-
-function X = scale2space(x, dims, Global)
-lambda = size(x, 2);
-X = repmat(Global.problem.lowerbound(dims), lambda, 1) + x' .* repmat(Global.problem.upperbound(dims) - Global.problem.lowerbound(dims), lambda, 1);
 end

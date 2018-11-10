@@ -1,11 +1,12 @@
 clear all;
 mode = 'test';
-algorithms = {'CCCMAES'};
+MAX_TRACE_POINTS = 1001;
+algorithms = {'CSO'};
 suite = 'LSO08';
 function_index = 1;
 runtimes = 1;
 dimension = 1000;
-evaluation = dimension * 5e3;
+evaluation = dimension * 3e3;
 DIR = 'Data';
 mkdir(DIR);
 Globals = {};
@@ -33,6 +34,7 @@ while pointer <= numel(Globals)
         feval(Globals{pointer}.algorithm, Globals{pointer});
     end
     G = Globals{pointer};
+    G.reduceTrace(MAX_TRACE_POINTS);
     renderCurve(G);
     filename = sprintf('[%s]%s_%s_D%d.mat', G.identifier, G.algorithm, G.problem.name, G.problem.dimension);
     save(fullfile(DIR, filename), 'G');

@@ -42,6 +42,17 @@ classdef GLOBAL < handle
                 Individuals(i).fitness = fit(i);
             end
         end
+        function reduceTrace(obj, max_points)
+            % reduce the trace to evenly sampled curve to reduce size
+            ratios = linspace(0, 1, max_points)';
+            D = pdist2(obj.trace(:, 1), ratios);
+            sample_index = [];
+            for i = 1: max_points
+                [~, I] = min(D(:, i));
+                sample_index = [sample_index, I];
+            end
+            obj.trace = obj.trace(sample_index, :);
+        end
         function flag = terminated(obj)
             if obj.evaluated >= obj.evaluation || obj.bestFitness <= obj.problem.idealfitness
                 flag = true;
@@ -61,8 +72,8 @@ classdef GLOBAL < handle
             fit(fit <= obj.problem.idealfitness) = 0;
             obj.evaluated = obj.evaluated + length(prefit);
             if obj.evaluated >= obj.evaluation && obj.terminated == false
-%                 obj.runtime.end = datetime('now');
-%                 obj.runtime.total = obj.runtime.end - obj.runtime.start;
+                %                 obj.runtime.end = datetime('now');
+                %                 obj.runtime.total = obj.runtime.end - obj.runtime.start;
                 if obj.trace(end, 1) ~= 1
                     obj.trace = [obj.trace; [1, obj.trace(end, 2)]];
                 end

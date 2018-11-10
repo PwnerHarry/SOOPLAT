@@ -1,8 +1,8 @@
 clear all;
 mode = 'test';
 algorithms = {'CCCMAES'};
-suite = 'LSO13';
-function_index = 3;
+suite = 'LSO08';
+function_index = 1;
 runtimes = 1;
 dimension = 1000;
 evaluation = dimension * 5e3;

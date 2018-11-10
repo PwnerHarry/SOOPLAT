@@ -13,6 +13,7 @@ classdef LSO13F12 < LSO13
             obj.upperbound = 100 * ones(1, dimension);
             obj.functionhandle = @(x)obj.rosenbrock(obj.shift(x)');
             obj.idealgroups = {1: dimension};
+            obj.idealfitness = geteps(obj);
         end
     end
 end

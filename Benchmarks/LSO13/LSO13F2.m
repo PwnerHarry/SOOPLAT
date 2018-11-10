@@ -13,6 +13,7 @@ classdef LSO13F2 < LSO13
             obj.upperbound = 5 * ones(1, dimension);
             obj.functionhandle = @(x)obj.rastrigin(obj.shift(x)');
             obj.idealseparables = 1: dimension;
+            obj.idealfitness = geteps(obj);
         end
     end
 end

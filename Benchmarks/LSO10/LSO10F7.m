@@ -18,6 +18,7 @@ classdef LSO10F7 < LSO10
             obj.functionhandle = @(x)obj.schwefel_group1_func(obj.shift(x));
             obj.idealgroups = {obj.p(1: 50)};
             obj.idealseparables = obj.p(51: end);
+            obj.idealfitness = geteps(obj);
         end
         function fit = schwefel_group1_func(obj, x)
             fit = 1e6 * obj.schwefel_func(x(:, obj.p(1: 50))) + obj.sphere_func(x(:, obj.p(51: end)));

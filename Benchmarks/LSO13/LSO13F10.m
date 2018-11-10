@@ -27,6 +27,7 @@ classdef LSO13F10 < LSO13
             obj.upperbound = 32 * ones(1, dimension);
             obj.functionhandle = @(x)obj.f10(obj.shift(x)');
             obj.idealgroups = {};
+            obj.idealfitness = geteps(obj);
             ldim = 1;
             for i = 1: length(obj.s)
                 if obj.s(i) == 25

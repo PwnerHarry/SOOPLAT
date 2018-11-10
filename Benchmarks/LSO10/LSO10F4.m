@@ -20,6 +20,7 @@ classdef LSO10F4 < LSO10
             obj.functionhandle = @(x)obj.elliptic_group1_rot_func(obj.shift(x));
             obj.idealgroups = {obj.p(1: 50)};
             obj.idealseparables = obj.p(51: end);
+            obj.idealfitness = geteps(obj);
         end
         function fit = elliptic_group1_rot_func(obj, x)
             fit = 1e6 * obj.elliptic_func(x(:, obj.p(1: 50)) * obj.M) + obj.elliptic_func(x(:, obj.p(51: end)));

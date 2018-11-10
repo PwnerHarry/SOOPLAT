@@ -13,6 +13,7 @@ classdef LSO08F5 < PROBLEM
             obj.upperbound = 600 * ones(1, dimension);
             obj.functionhandle = @(x)obj.griewank_func(obj.shift(x));
             obj.idealgroups = {1: dimension};
+            obj.idealfitness = geteps(obj);
         end
         function f = griewank_func(~, x)
 %             D = size(x, 2);

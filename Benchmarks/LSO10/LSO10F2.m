@@ -9,6 +9,7 @@ classdef LSO10F2 < LSO10
             obj.upperbound = 5 * ones(1, dimension);
             obj.functionhandle = @(x)obj.rastrigin_func(obj.shift(x));
             obj.idealseparables = 1: dimension;
+            obj.idealfitness = geteps(obj);
         end
         
     end

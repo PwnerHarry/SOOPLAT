@@ -43,7 +43,7 @@ classdef GLOBAL < handle
             end
         end
         function flag = terminated(obj)
-            if obj.evaluated >= obj.evaluation || obj.bestFitness == obj.problem.idealfitness
+            if obj.evaluated >= obj.evaluation || obj.bestFitness <= obj.problem.idealfitness
                 flag = true;
             else
                 flag = false;
@@ -58,21 +58,11 @@ classdef GLOBAL < handle
             prefit = feval(obj.problem.functionhandle, refinedPopulation);
             fit = NaN(size(Population, 1), 1);
             fit(violated_index == 0) = prefit;
-            %             dataset_solution = [dataset_solution; refinedPopulation];
-            %             if size(prefit, 1) == 1
-            %                 prefit = prefit';
-            %             end
-            %             dataset_fitness = [dataset_fitness; prefit];
-            %             if length(dataset_fitness) > 1e6
-            %                 save(['TEMP/solution_', num2str(obj.evaluated),'.mat'], 'dataset_solution');
-            %                 save(['TEMP/fitness_', num2str(obj.evaluated),'.mat'], 'dataset_fitness');
-            %                 dataset_solution = [];
-            %                 dataset_fitness = [];
-            %             end
+            fit(fit <= obj.problem.idealfitness) = 0;
             obj.evaluated = obj.evaluated + length(prefit);
             if obj.evaluated >= obj.evaluation && obj.terminated == false
-                obj.runtime.end = datetime('now');
-                obj.runtime.total = obj.runtime.end - obj.runtime.start;
+%                 obj.runtime.end = datetime('now');
+%                 obj.runtime.total = obj.runtime.end - obj.runtime.start;
                 if obj.trace(end, 1) ~= 1
                     obj.trace = [obj.trace; [1, obj.trace(end, 2)]];
                 end
@@ -91,9 +81,6 @@ classdef GLOBAL < handle
             xu = repmat(obj.problem.upperbound, NP, 1);% check the upper bound
             greater_pos = Population > xu;
             violated_index = any(less_pos + greater_pos, 2)';
-            if sum(violated_index) > 0
-                error('check');
-            end
         end
         function draw(obj)
             if isempty(obj.trace)

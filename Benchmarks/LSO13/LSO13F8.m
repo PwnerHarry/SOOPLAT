@@ -27,6 +27,7 @@ classdef LSO13F8 < LSO13
             obj.upperbound = 100 * ones(1, dimension);
             obj.functionhandle = @(x)obj.f8(obj.shift(x)');
             obj.idealgroups = {};
+            obj.idealfitness = geteps(obj);
             ldim = 1;
             for i = 1: length(obj.s)
                 if obj.s(i) == 25

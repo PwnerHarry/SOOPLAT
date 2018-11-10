@@ -24,6 +24,7 @@ classdef LSO10F11 < LSO10
                 obj.idealgroups{k} = obj.p(index);
             end
             obj.idealseparables = obj.p(501: end);
+            obj.idealfitness = geteps(obj);
         end
         function fit = ackley_group10_rot_func(obj, x)
             fit = 0;

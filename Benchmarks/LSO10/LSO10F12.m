@@ -22,6 +22,7 @@ classdef LSO10F12 < LSO10
                 obj.idealgroups{k} = obj.p(index);
             end
             obj.idealseparables = obj.p(501: end);
+            obj.idealfitness = geteps(obj);
         end
         function fit = schwefel_group10_func(obj, x)
             fit = 0;

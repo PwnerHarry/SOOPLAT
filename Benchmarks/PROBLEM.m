@@ -28,5 +28,17 @@ classdef PROBLEM < handle
             end
             shiftedX = X - repmat(obj.idealsolution, size(X, 1), 1);
         end
+        function E = geteps(obj)
+            D = length(obj.idealsolution);
+            E = eps;
+            for d = 1: D
+                x = obj.idealsolution;
+                x(d) = x(d) + eps;
+                E = max(E, obj.functionhandle(x));
+                x = obj.idealsolution;
+                x(d) = x(d) - eps;
+                E = max(E, obj.functionhandle(x));
+            end
+        end
     end
 end

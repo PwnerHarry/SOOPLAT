@@ -13,6 +13,7 @@ classdef LSO08F2 < PROBLEM
             obj.upperbound = 100 * ones(1, dimension);
             obj.functionhandle = @(x)obj.schwefel_func(obj.shift(x));
             obj.idealgroups = {1: dimension};
+            obj.idealfitness = geteps(obj);
         end
         function fit = schwefel_func(~, x)
             fit = schwefel(x);

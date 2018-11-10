@@ -21,6 +21,7 @@ classdef LSO10F18 < LSO10
                 index = (50 * (k - 1) + 1): 50 * k;
                 obj.idealgroups{k} = obj.p(index);
             end
+            obj.idealfitness = geteps(obj);
         end
         function fit = rosenbrock_group20_func(obj, x)
             fit = 0;

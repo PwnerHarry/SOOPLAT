@@ -14,6 +14,7 @@ classdef LSO08F4 < PROBLEM
             obj.functionhandle = @(x)obj.rastrigin_func(obj.shift(x));
             obj.idealgroups = {};
             obj.idealseparables = 1: dimension;
+            obj.idealfitness = geteps(obj);
         end
         function f = rastrigin_func(~, x)
             % f = sum(x .^ 2 - 10 .* cos(2 .* pi .* x) + 10, 2);

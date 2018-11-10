@@ -14,6 +14,7 @@ classdef LSO08F6 < PROBLEM
             obj.functionhandle = @(x)obj.ackley_func(obj.shift(x));
             obj.idealgroups = {};
             obj.idealseparables = 1: dimension;
+            obj.idealfitness = geteps(obj);
         end
         function f = ackley_func(~, x)
             % D = size(x, 2);

@@ -14,6 +14,7 @@ classdef LSO08F3 < PROBLEM
             obj.functionhandle = @(x)obj.rosenbrock_func(obj.shift(x));
             obj.idealgroups = {};
             obj.idealseparables = 1: dimension;
+            obj.idealfitness = geteps(obj);
         end
         function f = rosenbrock_func(~, x)
             % D = size(x, 2);

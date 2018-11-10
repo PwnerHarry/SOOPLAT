@@ -16,6 +16,7 @@ classdef LSO08F7 < PROBLEM
             obj.upperbound = 1 * ones(1, dimension);
             obj.functionhandle = @(x)obj.ff.evaluate(x);
             obj.idealgroups = {1: dimension};
+            obj.idealfitness = geteps(obj);
         end
     end
 end

@@ -9,6 +9,7 @@ classdef LSO10F3 < LSO10
             obj.upperbound = 32 * ones(1, dimension);
             obj.functionhandle = @(x)obj.ackley_func(obj.shift(x));
             obj.idealseparables = 1: dimension;
+            obj.idealfitness = geteps(obj);
         end
     end
 end

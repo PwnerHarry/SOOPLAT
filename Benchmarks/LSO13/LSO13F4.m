@@ -41,6 +41,7 @@ classdef LSO13F4 < LSO13
                 end
             end
             obj.idealseparables = obj.p(ldim: end);
+            obj.idealfitness = geteps(obj);
         end
         function fit = f4(obj, x)
             fit = 0;

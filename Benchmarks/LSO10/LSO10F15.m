@@ -23,6 +23,7 @@ classdef LSO10F15 < LSO10
                 index = (50 * (k - 1) + 1): 50 * k;
                 obj.idealgroups{k} = obj.p(index);
             end
+            obj.idealfitness = geteps(obj);
         end
         function fit = rastrigin_group20_rot_func(obj, x)
             fit = 0;

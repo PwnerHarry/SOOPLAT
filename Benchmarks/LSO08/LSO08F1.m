@@ -14,6 +14,7 @@ classdef LSO08F1 < PROBLEM
             obj.functionhandle = @(x)obj.sphere_func(obj.shift(x));
             obj.idealgroups = {};
             obj.idealseparables = 1: dimension;
+            obj.idealfitness = geteps(obj);
         end
         function fit = sphere_func(~, x)
             fit = sphere(x);

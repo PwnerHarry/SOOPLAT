@@ -20,6 +20,7 @@ classdef LSO10F5 < LSO10
             obj.functionhandle = @(x)obj.rastrigin_group1_rot_func(obj.shift(x));
             obj.idealgroups = {obj.p(1: 50)};
             obj.idealseparables = obj.p(51: end);
+            obj.idealfitness = geteps(obj);
         end
         function fit = rastrigin_group1_rot_func(obj, x)
             fit = 1e6 * obj.rastrigin_func(x(:,obj.p(1: 50)) * obj.M) + obj.rastrigin_func(x(:, obj.p(51: end)));

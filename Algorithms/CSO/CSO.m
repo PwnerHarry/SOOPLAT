@@ -1,3 +1,5 @@
+% Ran Cheng, Yaochu Jin. "A Competitive Swarm Optimizer for Large Scale Optimization"
+% https://ieeexplore.ieee.org/document/6819057
 function CSO(Global)
 phi = 0.15;
 if Global.problem.dimension >= 5000
@@ -15,10 +17,7 @@ halfSize = ceil(swarmSize / 2);
 p = initPopulation([], swarmSize, Global);
 fitness = Global.evaluate(p);
 v = zeros(swarmSize, Global.problem.dimension);
-gen = 0;
 while ~Global.terminated
-    gen = gen + 1;
-    fprintf('CSO: CYCLE %d\n', gen);
     % generate random pairs and do pairwise competitions
     rlist = randperm(swarmSize);
     rpairs = [rlist(1: ceil(swarmSize / 2)); rlist(floor(swarmSize / 2) + 1:swarmSize)]';
@@ -31,10 +30,7 @@ while ~Global.terminated
     randco3 = rand(halfSize, Global.problem.dimension);
     v(losers,:) = randco1.*v(losers,:) + randco2.*(p(winners,:) - p(losers,:)) + phi * randco3 .* (ones(halfSize, 1) * mean(p) - p(losers,:));
     p(losers,:) = p(losers,:) + v(losers,:);
-    for i = 1: halfSize
-        p(losers(i),:) = max(p(losers(i),:), Global.problem.lowerbound);
-        p(losers(i),:) = min(p(losers(i),:), Global.problem.upperbound);
-    end
+    p(losers(1: halfSize), :) = trimPopulation(p(losers(1: halfSize), :), Global.problem.lowerbound, Global.problem.upperbound);
     fitness(losers, :) = Global.evaluate(p(losers, :));
     Global.draw();
 end

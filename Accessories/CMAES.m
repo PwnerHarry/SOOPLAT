@@ -1,4 +1,4 @@
-% Nikolaus Hansen, The CMA Evolution Strategy: A Tutorial
+% Nikolaus Hansen. "The CMA Evolution Strategy: A Tutorial"
 % https://arxiv.org/abs/1604.00772
 function [xmean, C, sigma] = CMAES(varargin)
 [lb, ub, objfunc, N, sigma, xmean, C, B, D, lambda, maxFEs] = parseargs(varargin);

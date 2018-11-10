@@ -2,9 +2,9 @@ clear;
 clf;
 cla;
 samples = 51; % 51 points for each curve
-mainFolder = '../SOOPLAT-BenchmarkResults/LSO13/';
-problem = 'LSO13F11';
-algorithms = {'BICCA2', 'MTS', 'CSO', 'DECCG', 'CCCMAES', 'DECCDG', 'DECCDG2', 'DECCD', 'DECCDML'};
+mainFolder = 'Results\LSO13';
+problem = 'LSO13F15';
+algorithms = {'BICCA2', 'CCCMAES', 'CSO', 'DECCD', 'DECCDG', 'DECCDG2', 'DECCDML', 'DECCG', 'MTS'};
 % Interface: [spercentage, sdata] = collectData(samples, fileFolder, algorithm, problem, dimension, evaluation)
 gathereddata.percentage = [];
 gathereddata.data = [];
@@ -19,8 +19,7 @@ for i = 1: numel(algorithms)
     else
         dimension = 1000;
     end
-    [gathereddata(i).percentage, gathereddata(i).data] = collectData(samples, sprintf('%s/%s', mainFolder, algorithms{i}), algorithms{i}, problem, dimension, 56);
-    
+    [gathereddata(i).percentage, gathereddata(i).data] = collectData(samples, fullfile(mainFolder, algorithms{i}), algorithms{i}, problem, dimension, 56);
 end
 Curves = bandParser(gathereddata);
 axis square;
@@ -46,22 +45,21 @@ set(L, 'FontName', 'Book Antiqua', 'FontSize', 12);
 
 function Curves = bandParser(gathereddata)
 Curves = {};
+LineColors = linspecer(numel(gathereddata) - 1);
 for i = 1: numel(gathereddata)
     MEAN = mean(gathereddata(i).data);
+    VARIANCE = [min(gathereddata(i).data, [], 1); max(gathereddata(i).data, [], 1)];
     CONFIDENCE = [NaN(size(gathereddata(i).percentage)); NaN(size(gathereddata(i).percentage))];
     for j = 1: size(gathereddata(i).data, 2)
         D = gathereddata(i).data(:, j);
-        [~, ~, CONFIDENCE(:, j), ~] = ttest(D);%ztest(D, mean(D), std(D));
-        if CONFIDENCE(1, j) < 0
-            CONFIDENCE(1, j) = min(gathereddata(i).data(:, j));
-        end
+        [phat, pci] = mle(D, 'dist', 'logn');
+        CONFIDENCE(:, j) = exp(pci(:, 1)) - exp(phat(1)) + MEAN(j);
     end
-    VARIANCE = [min(gathereddata(i).data, [], 1); max(gathereddata(i).data, [], 1)];
     PERCENTAGE = gathereddata(i).percentage;
     if strcmp(gathereddata(i).algorithm, 'BICCA2')
         [Curves{i}, ~, ~] = bandDrawer(PERCENTAGE, MEAN, CONFIDENCE, VARIANCE, [0, 0, 1]);
     else
-        [Curves{i}, ~, ~] = bandDrawer(PERCENTAGE, MEAN, CONFIDENCE, VARIANCE);
+        [Curves{i}, ~, ~] = bandDrawer(PERCENTAGE, MEAN, CONFIDENCE, VARIANCE, LineColors(i - 1, :));
     end
     hold on;
 end
@@ -89,7 +87,8 @@ COLOR = Curve.Color;
 delete(Curve);
 ConfidenceArea = fill([PERCENTAGE, flip(PERCENTAGE)], [CONFIDENCE(1, :), flip(CONFIDENCE(2, :))], COLOR, 'EdgeColor', 'none', 'FaceAlpha', '0.4');
 hold on;
-VarianceArea = fill([PERCENTAGE, flip(PERCENTAGE)], [VARIANCE(1, :), flip(VARIANCE(2, :))], COLOR, 'EdgeColor', 'none', 'FaceAlpha', '0.2');
+% VarianceArea = fill([PERCENTAGE, flip(PERCENTAGE)], [VARIANCE(1, :), flip(VARIANCE(2, :))], COLOR, 'EdgeColor', 'none', 'FaceAlpha', '0.2');
+VarianceArea = [];
 Curve = plot(PERCENTAGE, MEAN, '-', 'LineWidth', LineWidth, 'COLOR', COLOR);
 drawnow;
 end

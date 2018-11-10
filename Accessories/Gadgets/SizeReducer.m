@@ -1,5 +1,5 @@
 MAXPOINTS = 1001;
-location = 'Results/LSO08/D10000/MTS';
+location = 'Results/LSO13/MTS';
 dirOutput = dir(fullfile(location, '*'));
 filenames = {dirOutput.name}';
 reduce_index = [];

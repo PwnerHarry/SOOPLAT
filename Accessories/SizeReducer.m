@@ -1,5 +1,5 @@
 MAXPOINTS = 1001;
-location = 'Results/LSO08/D10000/BICCA2';
+location = 'Results/LSO08/D10000/MTS';
 dirOutput = dir(fullfile(location, '*'));
 filenames = {dirOutput.name}';
 reduce_index = [];
@@ -13,7 +13,12 @@ filenames(reduce_index) = [];
 for i = 1: numel(filenames)
     filename = filenames{i};
 	load(fullfile(location, filename));
-    G.reduceTrace(MAXPOINTS);
+    try
+        G.reduceTrace(MAXPOINTS);
+    catch ME
+        clear G;
+        continue;
+    end
     save(fullfile(location, filename), 'G');
     clear G;
 end

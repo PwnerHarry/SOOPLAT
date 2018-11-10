@@ -44,6 +44,8 @@ classdef GLOBAL < handle
         end
         function reduceTrace(obj, max_points)
             % reduce the trace to evenly sampled curve to reduce size
+            % TODO: add block reduce feature to lower the requirement for
+            % memory
             ratios = linspace(0, 1, max_points)';
             D = pdist2(obj.trace(:, 1), ratios);
             sample_index = [];

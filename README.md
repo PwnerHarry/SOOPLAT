@@ -19,5 +19,5 @@ I have to apologize that since I am currently busy with my academics, I cannot h
 [5] M. N. Omidvar, et. al., “DG2: A faster and more accurate differential grouping for large-scale black-box optimization,” IEEE Transactions on Evolutionary Computation, vol. 21, no. 6, pp. 929–942, 2017.
 
 # REMINDER
-1. run initSOOPLAT.m to load the dependencies into MATLAB.
+1. run initialize.m to load the dependencies into MATLAB.
 2. This manuscript has a PDF version preprinted on arXiv.org.

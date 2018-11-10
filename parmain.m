@@ -1,5 +1,4 @@
 function parmain()
-    % initSOOPLAT();
     %%%%%%%%%%%%%%%%%%%
     algorithms = {'CSO', 'FRG'};
     function_index = 1;

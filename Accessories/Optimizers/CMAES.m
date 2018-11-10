@@ -1,7 +1,7 @@
 % Nikolaus Hansen. "The CMA Evolution Strategy: A Tutorial"
 % https://arxiv.org/abs/1604.00772
 function [xmean, C, sigma] = CMAES(varargin)
-[lb, ub, objfunc, N, sigma, xmean, C, B, D, lambda, maxFEs] = parseargs(varargin);
+[lb, ub, objfunc, N, sigma, xmean, C, B, D, lambda, maxFEs] = parseARGS(varargin);
 % Strategy parameter setting: Selection
 mu = lambda / 2; % number of parents/points for recombination
 weights = log(mu + 1 / 2) - log(1: mu)'; % muXone array for weighted recombination
@@ -54,7 +54,7 @@ while evaluated < maxFEs
 end
 end
 
-function [lb, ub, objfunc, N, sigma, xmean, C, B, D, lambda, maxFEs] = parseargs(varargin)
+function [lb, ub, objfunc, N, sigma, xmean, C, B, D, lambda, maxFEs] = parseARGS(varargin)
 varargin = varargin{:};
 xmean = [];
 C = [];

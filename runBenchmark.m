@@ -1,4 +1,5 @@
 clear all;
+mode = 'test';
 algorithms = {'CCCMAES'};
 suite = 'LSO13';
 function_index = 1;
@@ -22,10 +23,14 @@ pointer = 1;
 drawnow;
 error_list = [];
 while pointer <= numel(Globals)
-    try
+    if strcmp(mode, 'benchmark')
+        try
+            feval(Globals{pointer}.algorithm, Globals{pointer});
+        catch ME
+            error_list = [error_list, pointer];
+        end
+    elseif strcmp(mode, 'test')
         feval(Globals{pointer}.algorithm, Globals{pointer});
-    catch ME
-        error_list = [error_list, pointer];
     end
     G = Globals{pointer};
     renderCurve(G);

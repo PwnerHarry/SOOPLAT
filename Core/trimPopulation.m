@@ -1,7 +1,6 @@
 function X = trimPopulation(X, lb, ub)
 % This function trims the population within a bounding box defined by lb and ub
-% Note that if lb and ub are column vectors, the individuals in X should
-% also be column vectors and vice versa.
+% Note that if lb and ub are column vectors, the individuals in X should also be column vectors and vice versa.
 if iscolumn(lb) && iscolumn(ub)
     NP = size(X, 2);
     MIN = repmat(lb, 1, NP);

@@ -72,8 +72,8 @@ classdef GLOBAL < handle
             fit(fit <= obj.problem.idealfitness) = 0;
             obj.evaluated = obj.evaluated + length(prefit);
             if obj.evaluated >= obj.evaluation && obj.terminated == false
-                %                 obj.runtime.end = datetime('now');
-                %                 obj.runtime.total = obj.runtime.end - obj.runtime.start;
+                % obj.runtime.end = datetime('now');
+                % obj.runtime.total = obj.runtime.end - obj.runtime.start;
                 if obj.trace(end, 1) ~= 1
                     obj.trace = [obj.trace; [1, obj.trace(end, 2)]];
                 end

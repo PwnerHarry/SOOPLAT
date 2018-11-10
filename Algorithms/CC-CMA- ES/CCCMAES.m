@@ -14,11 +14,12 @@ while ~Global.terminated
     groups = feval(action, Global.problem.dimension, m, C);
     for i = 1: numel(groups)
         dims = groups{i};
-        [X_w(dims), C(dims, dims), sigma] = CMAES('-sigma', sigma, '-xmean', X_w(dims)', '-C', C(dims, dims), '-contextVector', Global.bestIndividual, '-lambda', lambda, '-maxFEs', FEs, '-dims', dims, '-Global', Global);
+        OBJFUNC = @(X) Global.evaluate(combine(X, Global.bestIndividual, dims));
+        [X_w(dims), C(dims, dims), sigma] = CMAES('-lb', Global.problem.lowerbound(dims)', '-ub', Global.problem.upperbound(dims)', '-sigma', sigma, '-xmean', X_w(dims)', '-C', C(dims, dims), '-objfunc', OBJFUNC, '-lambda', lambda, '-N', numel(dims), '-maxFEs', FEs);
     end
     contribution_ratio = abs(old_fitness - Global.bestFitness) / old_fitness;
     adapter.update(action, contribution_ratio);
-    fprintf('%s: %.2f%%\n', action, 100 * contribution_ratio);
+    % fprintf('%s: %.2f%%\n', action, 100 * contribution_ratio);
 end
 end
 

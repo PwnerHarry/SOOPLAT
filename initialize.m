@@ -1,4 +1,4 @@
-function initSOOPLAT()
+function initialize()
 rng('shuffle');
 main_path = fileparts(mfilename('fullpath'));
 cd(main_path);

@@ -6,7 +6,11 @@ suite = 'LSO08';
 function_index = 2;
 runtimes = 1;
 dimension = 1000;
-evaluation = dimension * 5e3;
+if strcmp(suite, 'LSO08')
+    evaluation = dimension * 5e3;
+else
+    evaluation = 3e6;
+end
 DIR = 'Data';
 mkdir(DIR);
 Globals = {};

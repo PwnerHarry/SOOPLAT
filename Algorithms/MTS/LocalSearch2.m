@@ -63,6 +63,5 @@ for l = randperm(N)
         end
     end
 end
-fprintf('LS2: %d FEs\n', Global.evaluated - startFEs);
 renderCurve(Global);
 end

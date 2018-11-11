@@ -55,6 +55,5 @@ for i = randperm(N)
         grade = grade + BONUS2;
     end % TODO: I don't know if this is right, should be
 end
-fprintf('LS3: %d FEs\n', Global.evaluated - startFEs);
 renderCurve(Global);
 end

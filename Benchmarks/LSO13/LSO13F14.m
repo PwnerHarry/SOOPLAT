@@ -34,7 +34,8 @@ classdef LSO13F14 < LSO13
             obj.upperbound = 100 * ones(1, dimension);
             obj.functionhandle = @(x)obj.f14(x');
             obj.idealgroups = {};
-            obj.idealfitness = geteps(obj);
+            % obj.idealfitness = geteps(obj);
+            obj.idealfitness = eps;
             for i = 1: length(obj.s)
                 if i == 1
                     ldim = 1;

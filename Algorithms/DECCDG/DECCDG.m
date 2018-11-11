@@ -63,7 +63,7 @@ while ~Global.terminated
         if strcmp(optimizer, 'SaNSDE')
             [pop(:, dim_index), ccm] = SaNSDE('-ccm', ccm, '-NP', NP, '-dims', dim_index, '-initPop', pop, '-contextVector', Global.bestIndividual, '-contextFitness', Global.bestFitness, '-maxGen', maxgen, '-Global', Global);
         elseif strcmp(optimizer, 'LSHADE')
-            [~, pop(:, dim_index)] = LSHADE('-NP', NP, '-dims', dim_index, '-initPop', pop, '-maxGen', maxgen, '-Global', Global);
+            error('unfinished');
         end
         renderCurve(Global);
     end

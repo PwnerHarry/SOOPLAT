@@ -96,6 +96,7 @@ classdef GLOBAL < handle
             violated_index = any(less_pos + greater_pos, 2)';
         end
         function draw(obj)
+            warning('GLOBAL.draw() is deprecated, please use renderCurve()');
             if isempty(obj.trace)
                 return;
             end

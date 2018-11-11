@@ -6,8 +6,18 @@ elseif nargin == 1
 else
     error('wrong use of timePrefix');
 end
-T = char(time);
-T([strfind(T, '-'), strfind(T, ':')]) = [];
-T = strrep(T, ' ', '-');
-T(1: 5) = [];
+MO = twoDigitStr(month(time));
+DD = twoDigitStr(day(time));
+HH = twoDigitStr(hour(time));
+MI = twoDigitStr(minute(time));
+SS = twoDigitStr(second(time));
+T = [MO, DD, '-', HH, MI, SS];
+end
+
+function S = twoDigitStr(N)
+if N < 10
+    S = ['0', num2str(round(N))];
+else
+    S = num2str(round(N));
+end
 end

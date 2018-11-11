@@ -25,7 +25,7 @@ classdef GLOBAL < handle
                 eval([arginStrings{Loc(i)}, ' = varargin{', num2str(IsString(i) + 1), '};']);
             end
             obj.algorithm = algorithm;
-            obj.trace = [];
+            obj.trace = [0, inf];
             obj.problem = feval(problem, dimension);
             obj.evaluated = 0;
             obj.evaluation = evaluation;

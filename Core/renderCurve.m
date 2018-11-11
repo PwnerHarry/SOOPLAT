@@ -1,4 +1,11 @@
-function renderCurve(Global)
+function renderCurve(varargin)
+if nargin == 1
+    Global = varargin{1};
+    draw_flag = true;
+elseif nargin == 2
+    Global = varargin{1};
+    draw_flag = varargin{2};
+end
 if isempty(Global.trace)
     return;
 end
@@ -27,7 +34,9 @@ if Global.terminated
     axis([0, 1, 0, inf]);
     lastCurve = [];
     set(gca, 'YScale', 'log');
-    drawnow;
+    if draw_flag
+        drawnow;
+    end
     return;
 end
 if isempty(lastCurve)
@@ -54,5 +63,7 @@ end
 set(L, 'Fontname', 'Book Antiqua', 'FontWeight', 'bold', 'FontSize', 12);
 set(gca, 'YScale', 'log');
 oldProblem = Global.problem.name;
-drawnow;
+if draw_flag
+    drawnow;
+end
 end

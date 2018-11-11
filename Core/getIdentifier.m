@@ -12,6 +12,7 @@ HH = twoDigitStr(hour(time));
 MI = twoDigitStr(minute(time));
 SS = twoDigitStr(second(time));
 T = [MO, DD, '-', HH, MI, SS];
+pause(1);
 end
 
 function S = twoDigitStr(N)

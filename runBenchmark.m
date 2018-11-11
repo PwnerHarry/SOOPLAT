@@ -1,12 +1,12 @@
 clear all;
 mode = 'test';
 MAX_TRACE_POINTS = 1001;
-algorithms = {'CSO'};
+algorithms = {'directOptimize'};
 suite = 'LSO08';
-function_index = 1;
+function_index = 2;
 runtimes = 1;
 dimension = 1000;
-evaluation = dimension * 3e3;
+evaluation = dimension * 5e3;
 DIR = 'Data';
 mkdir(DIR);
 Globals = {};
@@ -18,7 +18,6 @@ for R = 1: runtimes
             pointer = pointer + 1;
         end
     end
-    pause(1);
 end
 pointer = 1;
 drawnow;

@@ -17,8 +17,8 @@ classdef GLOBAL < handle
     end
     methods
         function obj = GLOBAL(varargin)
-            obj.additionals = [];
-            arginStrings = {'dimension', 'evaluation', 'problem', 'algorithm'};
+            additionals = [];
+            arginStrings = {'additionals', 'dimension', 'evaluation', 'problem', 'algorithm'};
             IsString = find(cellfun(@ischar, varargin));
             [~, Loc] = ismember(varargin(IsString), cellfun(@(S)['-', S], arginStrings, 'UniformOutput', false));
             for i = find(Loc ~= 0)
@@ -34,6 +34,7 @@ classdef GLOBAL < handle
             obj.runtime.total = [];
             obj.identifier = getIdentifier();
             obj.bestFitness = inf;
+            obj.additionals = additionals;
         end
         function fit = evaluateIndividuals(obj, Individuals)
             fit = evaluate(obj, cat(1, Individuals.solution));

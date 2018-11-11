@@ -14,7 +14,8 @@ while ~Global.terminated
     for i = groups
         subDim = dims(1 + 50 * (i - 1): min(50 * i, Global.problem.dimension));
         if strcmp(operator, 'LSHADE')
-            LSHADE('-initPop', Global.bestIndividual, '-dims', subDim, '-meanNP', NP, '-maxFEs', Global.evaluation / rounds, '-Global', Global);
+            error('unfinished');
+            % LSHADE('-initPop', Global.bestIndividual, '-dims', subDim, '-meanNP', NP, '-maxFEs', Global.evaluation / rounds, '-Global', Global);
         elseif strcmp(operator, 'ACoDE')
             ACoDE('-initPop', Global.bestIndividual, '-dims', subDim, '-NP', NP, '-maxFEs', Global.evaluation / rounds, '-Global', Global);
         end

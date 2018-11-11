@@ -32,7 +32,7 @@ while ~Global.terminated
     p(losers,:) = p(losers,:) + v(losers,:);
     p(losers(1: halfSize), :) = trimPopulation(p(losers(1: halfSize), :), Global.problem.lowerbound, Global.problem.upperbound);
     fitness(losers, :) = Global.evaluate(p(losers, :));
-    Global.draw();
+    renderCurve(Global);
 end
 end
 

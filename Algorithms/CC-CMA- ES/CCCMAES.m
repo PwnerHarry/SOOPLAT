@@ -19,6 +19,7 @@ while ~Global.terminated
     end
     contribution_ratio = abs(old_fitness - Global.bestFitness) / old_fitness;
     adapter.update(action, contribution_ratio);
+    % fprintf('%s: %.2f%%\n', action, 100 * contribution_ratio);
 end
 end
 

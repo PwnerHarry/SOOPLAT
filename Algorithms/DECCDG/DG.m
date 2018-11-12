@@ -42,7 +42,7 @@ dims = 1: dim;
 seps  = [];
 allgroups = {};
 while length(dims) >= 1
-    Global.draw();
+    renderCurve(Global);
     n = length(dims);
     group = dims(1);
     group_ind = 1;

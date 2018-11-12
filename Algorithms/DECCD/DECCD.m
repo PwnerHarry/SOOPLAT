@@ -32,9 +32,14 @@ while ~Global.terminated
     oldpop = pop;
     group = delta_grouping(Global.problem.dimension, group_size, mean(delta));
     for i = 1: numel(group)
-        dim_index = group{i};
-        [pop(:, dim_index), ccm] = SaNSDE('-ccm', ccm, '-NP', NP, '-dims', dim_index, '-initPop', pop, '-contextVector', Global.bestIndividual, '-contextFitness', Global.bestFitness, '-maxGen', 1, '-Global', Global);
+        dims = group{i};
+        lb = Global.problem.lowerbound(dims);
+        ub = Global.problem.upperbound(dims);
+        OBJFUNC = @(X) Global.evaluate(combine(X, Global.bestIndividual, dims));
+        [pop(:, dims), ccm] = SaNSDE2('-ub', ub, '-lb', lb, '-objfunc', OBJFUNC, '-ccm', ccm, '-NP', NP, '-initPop', pop(:, dims), '-xbest', Global.bestIndividual(dims), '-fbest', Global.bestFitness, '-maxGen', 1);
     end
     renderCurve(Global);
-    Global.evaluate(pop);
+    [~, xbest_index] = ismember(Global.bestIndividual, pop, 'rows');
+    evaluate_index = setdiff(1: NP, xbest_index);
+    Global.evaluate(pop(evaluate_index, :));
 end

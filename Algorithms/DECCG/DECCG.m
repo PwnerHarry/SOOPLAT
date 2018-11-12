@@ -7,10 +7,13 @@ pop = initPopulation([], NP, Global);
 Global.evaluate(pop);
 while ~Global.terminated
     group = randomGroup(Global.problem.dimension, groupSize);
-    for i = 1: numel(group)
-        renderCurve(Global);
+	for i = 1: numel(group)
         dims = group{i};
-        [pop(:, dims), ccm] = SaNSDE('-ccm', ccm, '-NP', NP, '-dims', dims, '-initPop', pop, '-contextVector', Global.bestIndividual, '-contextFitness', Global.bestFitness, '-maxGen', maxGen, '-Global', Global);
+        lb = Global.problem.lowerbound(dims);
+        ub = Global.problem.upperbound(dims);
+        OBJFUNC = @(X) Global.evaluate(combine(X, Global.bestIndividual, dims));
+        [pop(:, dims), ccm] = SaNSDE2('-ub', ub, '-lb', lb, '-objfunc', OBJFUNC, '-ccm', ccm, '-NP', NP, '-initPop', pop(:, dims), '-xbest', Global.bestIndividual(dims), '-fbest', Global.bestFitness, '-maxGen', maxGen);
+        renderCurve(Global);
     end
     val = Global.evaluate(pop);
     de_weight(Global.bestIndividual, Global.bestFitness, Global.problem.lowerbound, Global.problem.upperbound, NP, maxGen, group, Global);

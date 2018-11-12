@@ -59,12 +59,11 @@ while ~Global.terminated
     Cycle = Cycle + 1;
     fprintf('DECC-DG: CYCLE %d\n', Cycle);
     for i = 1: numel(group)
-        dim_index = group{i};
-        if strcmp(optimizer, 'SaNSDE')
-            [pop(:, dim_index), ccm] = SaNSDE('-ccm', ccm, '-NP', NP, '-dims', dim_index, '-initPop', pop, '-contextVector', Global.bestIndividual, '-contextFitness', Global.bestFitness, '-maxGen', maxgen, '-Global', Global);
-        elseif strcmp(optimizer, 'LSHADE')
-            error('unfinished');
-        end
+        dims = group{i};
+        lb = Global.problem.lowerbound(dims);
+        ub = Global.problem.upperbound(dims);
+        OBJFUNC = @(X) Global.evaluate(combine(X, Global.bestIndividual, dims));
+        [pop(:, dims), ccm] = SaNSDE2('-ub', ub, '-lb', lb, '-objfunc', OBJFUNC, '-ccm', ccm, '-NP', NP, '-initPop', pop(:, dims), '-xbest', Global.bestIndividual(dims), '-fbest', Global.bestFitness, '-maxGen', maxgen);
         renderCurve(Global);
     end
 end

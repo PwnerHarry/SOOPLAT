@@ -32,11 +32,14 @@ overflow_lb_index = X < MIN;
 if strcmp(mode, 'bound')
     X(overflow_ub_index) = MAX(overflow_ub_index);
     X(overflow_lb_index) = MIN(overflow_lb_index);
+elseif strcmp(mode, 'mod')
+    X(overflow_lb_index) = MIN(overflow_lb_index) + mod((MIN(overflow_lb_index) - X(overflow_lb_index)), (MAX(overflow_lb_index) - MIN(overflow_lb_index)));
+    X(overflow_ub_index) = MAX(overflow_ub_index) - mod((X(overflow_ub_index) - MAX(overflow_ub_index)), (MAX(overflow_ub_index) - MIN(overflow_ub_index)));
 elseif strcmp(mode, 'random')
     if isrow(lb) && isrow(ub)
-        R = ones(NP, 1) * lb + ones(NP, 1) * (ub - lb) .* rand(size(X));
+        R = ones(NP, 1) * lb + (ones(NP, 1) * (ub - lb)) .* rand(size(X));
     elseif iscolumn(lb) && iscolumn(ub)
-        R = lb * ones(1, NP) + (ub - lb) * ones(1, NP) .* rand(size(X));
+        R = lb * ones(1, NP) + ((ub - lb) * ones(1, NP)) .* rand(size(X));
     end
     X(overflow_ub_index) = R(overflow_ub_index);
     X(overflow_lb_index) = R(overflow_lb_index);

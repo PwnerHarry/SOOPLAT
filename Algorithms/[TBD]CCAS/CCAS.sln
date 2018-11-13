@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C014181E-B8FA-42E8-9D7E-AF064B40B15F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CCAS", "CCAS.vcxproj", "{BB8D4A54-CDF6-412C-83F3-76BC0599C3E2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB8D4A54-CDF6-412C-83F3-76BC0599C3E2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BB8D4A54-CDF6-412C-83F3-76BC0599C3E2}.Debug|Win32.Build.0 = Debug|Win32
+		{BB8D4A54-CDF6-412C-83F3-76BC0599C3E2}.Release|Win32.ActiveCfg = Release|Win32
+		{BB8D4A54-CDF6-412C-83F3-76BC0599C3E2}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

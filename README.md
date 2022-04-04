@@ -2,9 +2,9 @@
 
 Increasing interest in the research of single objective optimization algorithms calls for an experimental platform that could provide researchers with convenient and universal interfaces of the benchmark functions and easy gathering statistics. Here, I propose a prototype Single Objective Optimization PLATform (SOOPLAT) to meet the needs.
 
-SOOPLAT is inspired by the masterpiece PlatEMO [1] by Dr. Ye Tian and his coworkers. I want to express sincere gratitude for the convenience that PlatEMO provided with me when I was composing the papers [2, 3]. Therefore, I have decided to make use of my time composing a convenient open-source platform for us the researchers and experimenters for single objective optimization. The development of SOOPLAT began shortly after a chat with Dr. Daniel Molina, chair of the IEEE Task Force on Large-Scale Global Optimization (www.tflsgo.org), as both of us agreed that a platform is in great need.
+SOOPLAT is inspired by PlatEMO [1] of Ye Tian and colleagues, which provided me great flexibility and convenience when I was composing the papers [2, 3]. Therefore, I have decided to make use of my time composing a convenient open-source platform for researchers for single objective optimization. The development of SOOPLAT began shortly after a chat with Daniel Molina, chair of the IEEE Task Force on Large-Scale Global Optimization (www.tflsgo.org), as both of us agreed that a platform is in great need.
 
-I have to apologize that since I am currently busy with my academics, I cannot hereby provide a detailed users’ manual for this platform, which surely I will provide when I am done with my recent business. Since my code is clear to comprehend, please read the existing code of the algorithms I have implemented such as CSO [4], DECC-DG2 [5], etc., and you will certainly know how easy-to-use SOOPLAT is. Also, please contribute to the source code. You are the most welcome!
+I have to apologize that since I am currently busy with my studies and research, I cannot hereby provide a detailed users’ manual for this platform, which I may provide when I am done with my recent business. Since my code is clear to comprehend, please read the existing code of the algorithms I have implemented such as CSO [4], DECC-DG2 [5], etc., and you will certainly know how easy-to-use SOOPLAT is. Also, please contribute to the source code. You are the most welcome!
 
 ## References
 
@@ -20,4 +20,3 @@ I have to apologize that since I am currently busy with my academics, I cannot h
 
 # REMINDER
 1. run initialize.m to load the dependencies into MATLAB.
-2. This manuscript has a PDF version preprinted on arXiv.org.
